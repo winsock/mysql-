@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<makefile>
+	<include file="presets/simple.bkl"/>
+
+	<subproject id="lib">
+		<dir>lib</dir>
+	</subproject>
+
+	<subproject id="examples">
+		<dir>examples</dir>
+		<installable>no</installable>
+	</subproject>
+</makefile>
