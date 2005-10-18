@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<makefile>
+	<include file="presets/simple.bkl"/>
+
+
+	<!-- Define variables that control make/project file generation -->
+	<set var="MYSQLLIB">@MYSQL_C_LIB@</set>
+	<set var="ZLIB">yes</set>
+
+
+	<!-- Set up standard build options for all examples -->
+	<template id="example">
+		<include>../lib</include>
+
+		<lib-path>../lib</lib-path>
+		<sys-lib>@MYSQL_C_LIB@</sys-lib>
+		<sys-lib>mysqlpp</sys-lib>
+		<if cond="ZLIB=='yes'">
+			<sys-lib>z</sys-lib>
+		</if>
+
+		<if cond="MYSQLLIB == 'mysqlclient'">
+			<threading>single</threading>
+		</if>
+		<if cond="MYSQLLIB == 'mysqlclient_r'">
+			<threading>multi</threading>
+		</if>
+		
+		<warnings>max</warnings>
+		<cxx-rtti>on</cxx-rtti>
+		<cxx-exceptions>on</cxx-exceptions>
+	</template>
+
+	<!-- Extend 'example' template for the subset of examples that
+	     use the util module. -->
+	<template id="std-example" template="example">
+		<sources>util.cpp</sources>
+	</template>
+
+
+	<!-- Define output targets -->
+	<exe id="resetdb" template="std-example">
+		<sources>resetdb.cpp</sources>
+	</exe>
+	<exe id="simple1" template="std-example">
+		<sources>simple1.cpp</sources>
+	</exe>
+</makefile>
