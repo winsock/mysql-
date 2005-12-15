@@ -10,9 +10,8 @@ rm -f config.cache
 set -x
 
 bakefilize &&
-	bakefile -f autoconf mysql++.bkl &&
-	bakefile -f autoconf lib/lib.bkl &&
-	bakefile -f autoconf examples/examples.bkl &&
+	./mkbf autoconf &&
+	./mkbf msvc6prj &&
 	autoreconf -i &&
 	aclocal -I config &&
 	autoheader &&
@@ -20,5 +19,5 @@ bakefilize &&
 	./reconf $* &&
 	( cd lib ; make custom.h )
 
-#! Add bakefile calls to generate simple GCC makefile (for examples
-#! dir in RPM) and VC++ project files.  Also consider MinGW support.
+#! Add bakefile calls to generate simple GCC makefile, for examples
+#! dir in RPM.  Also consider MinGW support.
