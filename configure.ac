@@ -30,7 +30,7 @@ AC_SUBST(MYSQLPP_VERSION_BUGFIX)
 
 
 # Include Bakefile macros
-AC_BAKEFILE([m4_include(autoconf_inc.m4)])
+AC_BAKEFILE([m4_include(config/autoconf_inc.m4)])
 
 
 # Checks for build system tools

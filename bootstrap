@@ -12,6 +12,7 @@ set -x
 bakefilize &&
 	./mkbf autoconf &&
 	./mkbf msvc6prj &&
+	mv autoconf_inc.m4 config &&
 	autoreconf -i &&
 	aclocal -I config &&
 	autoheader &&
