@@ -4,10 +4,12 @@
 
 	<subproject id="lib">
 		<dir>lib</dir>
+		<dependency-of>all</dependency-of>
 	</subproject>
 
 	<subproject id="examples">
 		<dir>examples</dir>
 		<installable>no</installable>
+		<dependency-of>all</dependency-of>
 	</subproject>
 </makefile>
