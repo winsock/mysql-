@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<bakefile-gen>
+    <input>
+        mysql++.bkl
+		lib/lib.bkl
+		examples/examples.bkl
+    </input>
+
+    <!-- List of output formats to generate: -->
+    <add-formats>
+        autoconf,mingw,msvc6prj
+    </add-formats>
+
+</bakefile-gen>
