@@ -11,6 +11,7 @@ set -x
 
 bakefilize &&
 	bakefile_gen &&
+	unix2dos {.,examples,lib}/*.ds? &&
 	mv autoconf_inc.m4 config &&
 	rm {lib,examples}/autoconf_inc.m4 &&
 	aclocal -I config -I /usr/local/share/aclocal &&
