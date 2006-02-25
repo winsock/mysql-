@@ -10,11 +10,10 @@ rm -f config.cache
 set -x
 
 bakefilize &&
-	./mkbf autoconf &&
-	./mkbf msvc6prj &&
+	bakefile_gen &&
 	mv autoconf_inc.m4 config &&
-	autoreconf -i &&
-	aclocal -I config &&
+	rm {lib,examples}/autoconf_inc.m4 &&
+	aclocal -I config -I /usr/local/share/aclocal &&
 	autoheader &&
 	autoconf &&
 	./reconf $* &&
