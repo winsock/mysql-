@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <makefile>
-	<include file="presets/simple.bkl"/>
+	<include file="../common.bkl"/>
 
 	<dll id="mysqlpp">
 		<sources>coldata.cpp connection.cpp datetime.cpp field_names.cpp
@@ -8,7 +8,16 @@
 		query.cpp result.cpp row.cpp sql_string.cpp string_util.cpp
 		type_info.cpp vallist.cpp</sources>
 
+		<debug-info>$(DEBUGINFO)</debug-info>
 		<include>..</include>
+
+		<if cond="FORMAT=='msvc6prj'">
+			<define>_UNICODE</define>
+			<define>MYSQLPP_MAKING_DLL</define>
+			<include>c:\mysql\include</include>
+			<lib-path>c:\mysql\lib\opt</lib-path>
+			<sys-lib>libmysql</sys-lib>
+		</if>
 	</dll>
 
 	<action id="custom.h">

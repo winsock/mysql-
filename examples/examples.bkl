@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <makefile>
-	<include file="presets/simple.bkl"/>
+	<include file="../common.bkl"/>
 
 
 	<!-- Define variables that control make/project file generation -->
@@ -12,11 +12,25 @@
 	<template id="example">
 		<include>../lib</include>
 
-		<lib-path>../lib</lib-path>
-		<sys-lib>@MYSQL_C_LIB@</sys-lib>
 		<sys-lib>mysqlpp</sys-lib>
-		<if cond="ZLIB=='yes'">
-			<sys-lib>z</sys-lib>
+
+		<debug-info>$(DEBUGINFO)</debug-info>
+
+		<if cond="FORMAT=='msvc6prj'">
+			<define>_UNICODE</define>
+			<include>c:\mysql\include</include>
+			<lib-path>c:\mysql\lib\opt</lib-path>
+			<lib-path>..\lib\$(BUILD)</lib-path>
+			<sys-lib>libmysql</sys-lib>
+		</if>
+
+		<if cond="FORMAT=='autoconf'">
+			<warnings>max</warnings>
+			<lib-path>../lib</lib-path>
+			<sys-lib>@MYSQL_C_LIB@</sys-lib>
+			<if cond="ZLIB=='yes'">
+				<sys-lib>z</sys-lib>
+			</if>
 		</if>
 
 		<if cond="MYSQLLIB == 'mysqlclient'">
@@ -26,7 +40,6 @@
 			<threading>multi</threading>
 		</if>
 		
-		<warnings>max</warnings>
 		<cxx-rtti>on</cxx-rtti>
 		<cxx-exceptions>on</cxx-exceptions>
 	</template>
@@ -39,10 +52,59 @@
 
 
 	<!-- Define output targets -->
+	<!-- First, the "standard" examples, those being the ones that
+	     all depend on the util module -->
 	<exe id="resetdb" template="std-example">
 		<sources>resetdb.cpp</sources>
 	</exe>
 	<exe id="simple1" template="std-example">
 		<sources>simple1.cpp</sources>
+	</exe>
+	<exe id="simple2" template="std-example">
+		<sources>simple2.cpp</sources>
+	</exe>
+	<exe id="simple3" template="std-example">
+		<sources>simple3.cpp</sources>
+	</exe>
+	<exe id="usequery" template="std-example">
+		<sources>usequery.cpp</sources>
+	</exe>
+	<exe id="multiquery" template="std-example">
+		<sources>multiquery.cpp</sources>
+	</exe>
+	<exe id="custom1" template="std-example">
+		<sources>custom1.cpp</sources>
+	</exe>
+	<exe id="custom2" template="std-example">
+		<sources>custom2.cpp</sources>
+	</exe>
+	<exe id="custom3" template="std-example">
+		<sources>custom3.cpp</sources>
+	</exe>
+	<exe id="custom4" template="std-example">
+		<sources>custom4.cpp</sources>
+	</exe>
+	<exe id="custom5" template="std-example">
+		<sources>custom5.cpp</sources>
+	</exe>
+	<exe id="custom6" template="std-example">
+		<sources>custom6.cpp</sources>
+	</exe>
+	<exe id="dbinfo" template="std-example">
+		<sources>dbinfo.cpp</sources>
+	</exe>
+	<exe id="fieldinf1" template="std-example">
+		<sources>fieldinf1.cpp</sources>
+	</exe>
+
+	<!-- Next, the "nonstandard" examples -->
+	<exe id="cgi_image" template="example">
+		<sources>cgi_image.cpp</sources>
+	</exe>
+	<exe id="load_file" template="example">
+		<sources>load_file.cpp</sources>
+	</exe>
+	<exe id="updel" template="example">
+		<sources>updel.cpp</sources>
 	</exe>
 </makefile>
