@@ -1,0 +1,6 @@
+#!/bin/sh
+bakefilize &&
+	bakefile_gen &&
+	unix2dos {examples,lib}/*.ds? &&
+	mv autoconf_inc.m4 config &&
+	rm -f {examples,lib}/autoconf_inc.m4 mysql++.dsw
