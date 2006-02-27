@@ -75,5 +75,6 @@ fi
 #
 # Configure process complete; write out files generated from *.in.
 #
-AC_OUTPUT([Makefile mysql++.spec lib/Doxyfile lib/mysql++.h])
+AC_OUTPUT([Makefile lib/Makefile examples/Makefile 
+		mysql++.spec lib/Doxyfile lib/mysql++.h])
 
