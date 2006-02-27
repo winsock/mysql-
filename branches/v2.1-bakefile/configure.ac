@@ -72,41 +72,8 @@ then
 fi
 
 
-# Set up optional debug build feature
-AC_ARG_ENABLE(debug,
-		[  --enable-debug          Enable debugging information],
-		USE_DEBUG="$enableval", USE_DEBUG="no")
-if test $USE_DEBUG = yes
-then 
-	DEBUG=1
-	CFLAGS="$CFLAGS -g"
-else
-	DEBUG=0
-fi
-
-
-# Decide if examples are to be built or not.
-AC_ARG_ENABLE(examples,
-		[  --enable-examples  Build the examples (built by default) ],
-		[ build_examples=$enableval ],
-		[ build_examples=yes ])
-if test "x$build_examples" = xyes
-then
-	OPTIONAL_EXAMPLES=examples
-	echo will build examples
-else
-	OPTIONAL_EXAMPLES= 
-	echo will NOT build examples
-fi
-AC_SUBST([OPTIONAL_EXAMPLES])
-
-
 #
 # Configure process complete; write out files generated from *.in.
 #
-AC_OUTPUT([Makefile mysql++.spec lib/Doxyfile lib/Makefile lib/mysql++.h])
-if test "x$OPTIONAL_EXAMPLES" != "x"
-then
-	AC_OUTPUT([examples/Makefile])
-fi
+AC_OUTPUT([Makefile mysql++.spec lib/Doxyfile lib/mysql++.h])
 
