@@ -47,13 +47,21 @@
 	<!-- Extend 'example' template for the subset of examples that
 	     use the util module. -->
 	<template id="std-example" template="example">
-		<sources>util.cpp</sources>
+		<depends>util</depends>
+		<lib-path>.</lib-path>
+		<sys-lib>mysqlpp_util</sys-lib>
 	</template>
 
 
 	<!-- Define output targets -->
-	<!-- First, the "standard" examples, those being the ones that
-	     all depend on the util module -->
+	<!-- The "util" convenience library -->
+	<lib id="util" template="example">
+		<libname>mysqlpp_util</libname>
+		<sources>util.cpp</sources>
+	</lib>
+	
+	<!-- The "standard" examples, being the ones that depend on
+		the util library. -->
 	<exe id="resetdb" template="std-example">
 		<sources>resetdb.cpp</sources>
 	</exe>
@@ -97,7 +105,7 @@
 		<sources>fieldinf1.cpp</sources>
 	</exe>
 
-	<!-- Next, the "nonstandard" examples -->
+	<!-- The "nonstandard" examples -->
 	<exe id="cgi_image" template="example">
 		<sources>cgi_image.cpp</sources>
 	</exe>
