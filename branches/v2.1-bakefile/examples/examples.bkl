@@ -48,8 +48,15 @@
 	     use the util module. -->
 	<template id="std-example" template="example">
 		<depends>util</depends>
-		<lib-path>.</lib-path>
 		<sys-lib>mysqlpp_util</sys-lib>
+
+		<if cond="FORMAT=='msvc6prj'">
+			<lib-path>$(BUILD)</lib-path>
+		</if>
+
+		<if cond="FORMAT in ['autoconf','mingw']">
+			<lib-path>.</lib-path>
+		</if>
 	</template>
 
 
