@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <makefile>
 	<include file="../common.bkl"/>
+	<using module="datafiles"/>
 
 	<dll id="mysqlpp">
 		<sources>coldata.cpp connection.cpp datetime.cpp field_names.cpp
@@ -18,7 +19,14 @@
 			<lib-path>c:\mysql\lib\opt</lib-path>
 			<sys-lib>libmysql</sys-lib>
 		</if>
+
+		<install-to>$(LIBDIR)</install-to>
 	</dll>
+
+	<data-files>
+		<files>*.h</files>
+		<install-to>$(PREFIX)/include/mysql++</install-to>
+	</data-files>
 
 	<action id="custom.h">
 		<command>./custom.pl</command>
