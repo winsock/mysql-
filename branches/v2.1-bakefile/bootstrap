@@ -9,16 +9,10 @@ fi
 rm -f config.cache
 set -x
 
-bakefilize &&
-	bakefile_gen &&
-	unix2dos {.,examples,lib}/*.ds? &&
-	mv autoconf_inc.m4 config &&
-	rm {lib,examples}/autoconf_inc.m4 &&
+./rebake &&
 	aclocal -I config -I /usr/local/share/aclocal &&
 	autoheader &&
 	autoconf &&
 	./reconf $* &&
 	( cd lib ; make custom.h )
 
-#! Add bakefile calls to generate simple GCC makefile, for examples
-#! dir in RPM.  Also consider MinGW support.
