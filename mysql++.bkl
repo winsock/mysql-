@@ -68,7 +68,9 @@
 			<command>
 				cp doc/userman/html/userman.css $(PKGNAME)/doc/userman/html
 			</command>
-			<command>cp lib/*.{bkl,cpp,ds?,h} lib/Mak* $(PKGNAME)/lib</command>
+			<command>
+				cp lib/*.{bkl,cpp,ds?,h,in} lib/Mak* $(PKGNAME)/lib
+			</command>
 		</action>
 
 		<action id="dist-build-examples">
