@@ -10,4 +10,14 @@
     <add-formats>
         autoconf,msvc6prj,mingw
     </add-formats>
+
+    <add-flags files="mysql++.bkl" formats="mingw">
+        -oMakefile.mingw
+    </add-flags>
+    <add-flags files="examples/examples.bkl" formats="mingw">
+        -oexamples/Makefile.mingw
+    </add-flags>
+    <add-flags files="lib/lib.bkl" formats="mingw">
+        -olib/Makefile.mingw
+    </add-flags>
 </bakefile-gen>
