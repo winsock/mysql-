@@ -14,9 +14,68 @@
 	</subproject>
 
 	<if cond="FORMAT=='autoconf'">
+		<set var="PKGNAME">mysql++-@PACKAGE_VERSION@</set>
+		<set var="DBLDOLLAR">$(DOLLAR)$(DOLLAR)</set>
+			
 		<action id="install-lib">
 			<command>cd lib &amp;&amp; $(DOLLAR)(MAKE) install</command>
 			<dependency-of>install</dependency-of>
+		</action>
+
+		<action id="dist">
+			<depends>dist-noexamples</depends>
+			<depends>dist-examples</depends>
+			<command>rm -rf $(PKGNAME)</command>
+		</action>
+
+		<action id="dist-examples">
+			<command>tar czf $(PKGNAME).tar.gz $(PKGNAME)</command>
+			<depends>dist-build-main</depends>
+			<depends>dist-build-examples</depends>
+		</action>
+
+		<action id="dist-noexamples">
+			<command>tar czf $(PKGNAME)-noex.tar.gz $(PKGNAME)</command>
+			<depends>dist-build-main</depends>
+		</action>
+
+		<action id="dist-build-main">
+			<command>
+				for d in config doc/refman/html doc/userman/html lib ; do \
+					mkdir -p $(PKGNAME)/$(DBLDOLLAR)d ; \
+				done
+			</command>
+			<command>
+				cp Bakefiles.bkgen bootstrap ChangeLog cleanmf \
+					common.bkl config.guess config.h.in config.sub \
+					configure* COPYING CREDITS do-upload fetch-backup \
+					HACKERS INSTALL install.bat libmysqlclient.def \
+					LICENSE Makefile* mysql++.* osver README* rebake \
+					reconf Wishlist $(PKGNAME)
+			</command>
+			<command>cp config/*.m4 $(PKGNAME)/config</command>
+			<command>cp doc/README* doc/ssqls-pretty $(PKGNAME)/doc</command>
+			<command>
+				for f in LICENSE Makefile README userman.xml ; do \
+					cp doc/userman/$(DBLDOLLAR)f $(PKGNAME)/doc/userman ; \
+				done
+			</command>
+			<command>
+				for f in _header.html refman.css ; do \
+					cp doc/refman/html/$(DBLDOLLAR)f $(PKGNAME)/doc/refman/html ; \
+				done
+			</command>
+			<command>
+				cp doc/userman/html/userman.css $(PKGNAME)/doc/userman/html
+			</command>
+			<command>cp lib/*.{bkl,cpp,ds?,h} lib/Mak* $(PKGNAME)/lib</command>
+		</action>
+
+		<action id="dist-build-examples">
+			<command>mkdir -p $(PKGNAME)/examples</command>
+			<command>cp examples/*.{bkl,cpp,h} $(PKGNAME)/examples</command>
+			<command>cp examples/Mak* $(PKGNAME)/examples</command>
+			<command>cp examples/*.ds? $(PKGNAME)/examples</command>
 		</action>
 	</if>
 </makefile>
