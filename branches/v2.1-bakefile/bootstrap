@@ -1,15 +1,30 @@
 #!/bin/sh
 
-if [ "$1" = "pedantic" ]
-then 
-	export CXXFLAGS="-g -O2 -ansi -pedantic -Wall -W -Wold-style-cast -Wfloat-equal -Wwrite-strings -Woverloaded-virtual -Wno-long-long"
-	shift
-fi
+ARGS=1
+OPT_EXAMPLES=
+while [ $ARGS != 0 ]
+do
+	case "$1" in
+		pedantic)
+			export CXXFLAGS="-g -O2 -ansi -pedantic -Wall -W -Wold-style-cast -Wfloat-equal -Wwrite-strings -Woverloaded-virtual -Wno-long-long"
+			shift
+			;;
+
+		noexamples)
+			OPT_EXAMPLES="-DEXAMPLES=no"
+			shift
+			;;
+
+		*)
+			ARGS=0
+			;;
+	esac
+done
 
 rm -f config.cache
 set -x
 
-./rebake &&
+./rebake $OPT_EXAMPLES &&
 	aclocal -I config -I /usr/local/share/aclocal &&
 	autoheader &&
 	autoconf &&
