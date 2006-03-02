@@ -2,6 +2,14 @@
 <makefile>
 	<include file="presets/simple.bkl"/>
 
+	<set var="MYSQLLIB">@MYSQL_C_LIB@</set>
+	<set var="ZLIB">yes</set>
+
+	<set var="THREAD_TYPE">single</set>
+	<if cond="MYSQLLIB=='mysqlclient_r'">
+		<set var="THREAD_TYPE">multi</set>
+	</if>
+		
     <option name="BUILD">
         <values>debug,release</values>
         <values-description>Debug,Release</values-description>

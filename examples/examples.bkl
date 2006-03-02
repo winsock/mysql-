@@ -3,11 +3,6 @@
 	<include file="../common.bkl"/>
 
 
-	<!-- Define variables that control make/project file generation -->
-	<set var="MYSQLLIB">@MYSQL_C_LIB@</set>
-	<set var="ZLIB">yes</set>
-
-
 	<!-- Set up standard build options for all examples -->
 	<template id="example">
 		<include>../lib</include>
@@ -16,7 +11,7 @@
 
 		<debug-info>$(DEBUGINFO)</debug-info>
 
-		<if cond="FORMAT=='msvc6prj'">
+		<if cond="FORMAT in ['msvc6prj', 'mingw']">
 			<define>_UNICODE</define>
 			<include>c:\mysql\include</include>
 			<lib-path>c:\mysql\lib\opt</lib-path>
@@ -33,13 +28,12 @@
 			</if>
 		</if>
 
-		<if cond="MYSQLLIB == 'mysqlclient'">
-			<threading>single</threading>
+		<if cond="FORMAT=='gnu'">
+			<include>/usr/include/mysql</include>
+			<sys-lib>mysqlclient</sys-lib>
 		</if>
-		<if cond="MYSQLLIB == 'mysqlclient_r'">
-			<threading>multi</threading>
-		</if>
-		
+
+		<threading>$(THREAD_TYPE)</threading>
 		<cxx-rtti>on</cxx-rtti>
 		<cxx-exceptions>on</cxx-exceptions>
 	</template>
@@ -54,7 +48,7 @@
 			<lib-path>$(BUILD)</lib-path>
 		</if>
 
-		<if cond="FORMAT in ['autoconf','mingw']">
+		<if cond="FORMAT in ['autoconf', 'mingw', 'gnu']">
 			<lib-path>.</lib-path>
 		</if>
 	</template>

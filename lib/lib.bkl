@@ -12,7 +12,7 @@
 		<debug-info>$(DEBUGINFO)</debug-info>
 		<include>..</include>
 
-		<if cond="FORMAT=='msvc6prj'">
+		<if cond="FORMAT in ['msvc6prj', 'mingw']">
 			<define>_UNICODE</define>
 			<define>MYSQLPP_MAKING_DLL</define>
 			<include>c:\mysql\include</include>
@@ -20,6 +20,10 @@
 			<sys-lib>libmysql</sys-lib>
 		</if>
 
+		<threading>$(THREAD_TYPE)</threading>
+		<cxx-rtti>on</cxx-rtti>
+		<cxx-exceptions>on</cxx-exceptions>
+		
 		<install-to>$(LIBDIR)</install-to>
 	</dll>
 
