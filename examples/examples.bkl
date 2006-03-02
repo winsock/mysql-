@@ -2,6 +2,7 @@
 <makefile>
 	<include file="../common.bkl"/>
 
+	<set var="EXAMPLES">yes</set>
 
 	<!-- Set up standard build options for all examples -->
 	<template id="example">
@@ -54,66 +55,68 @@
 	</template>
 
 
-	<!-- Define output targets -->
-	<!-- The "util" convenience library -->
-	<lib id="util" template="example">
-		<libname>mysqlpp_util</libname>
-		<sources>util.cpp</sources>
-	</lib>
-	
-	<!-- The "standard" examples, being the ones that depend on
-		the util library. -->
-	<exe id="resetdb" template="std-example">
-		<sources>resetdb.cpp</sources>
-	</exe>
-	<exe id="simple1" template="std-example">
-		<sources>simple1.cpp</sources>
-	</exe>
-	<exe id="simple2" template="std-example">
-		<sources>simple2.cpp</sources>
-	</exe>
-	<exe id="simple3" template="std-example">
-		<sources>simple3.cpp</sources>
-	</exe>
-	<exe id="usequery" template="std-example">
-		<sources>usequery.cpp</sources>
-	</exe>
-	<exe id="multiquery" template="std-example">
-		<sources>multiquery.cpp</sources>
-	</exe>
-	<exe id="custom1" template="std-example">
-		<sources>custom1.cpp</sources>
-	</exe>
-	<exe id="custom2" template="std-example">
-		<sources>custom2.cpp</sources>
-	</exe>
-	<exe id="custom3" template="std-example">
-		<sources>custom3.cpp</sources>
-	</exe>
-	<exe id="custom4" template="std-example">
-		<sources>custom4.cpp</sources>
-	</exe>
-	<exe id="custom5" template="std-example">
-		<sources>custom5.cpp</sources>
-	</exe>
-	<exe id="custom6" template="std-example">
-		<sources>custom6.cpp</sources>
-	</exe>
-	<exe id="dbinfo" template="std-example">
-		<sources>dbinfo.cpp</sources>
-	</exe>
-	<exe id="fieldinf1" template="std-example">
-		<sources>fieldinf1.cpp</sources>
-	</exe>
+	<!-- Define output targets, if examples are enabled -->
+	<if cond="EXAMPLES=='yes'">
+		<!-- The "util" convenience library -->
+		<lib id="util" template="example">
+			<libname>mysqlpp_util</libname>
+			<sources>util.cpp</sources>
+		</lib>
+		
+		<!-- The "standard" examples, being the ones that depend on
+			the util library. -->
+		<exe id="resetdb" template="std-example">
+			<sources>resetdb.cpp</sources>
+		</exe>
+		<exe id="simple1" template="std-example">
+			<sources>simple1.cpp</sources>
+		</exe>
+		<exe id="simple2" template="std-example">
+			<sources>simple2.cpp</sources>
+		</exe>
+		<exe id="simple3" template="std-example">
+			<sources>simple3.cpp</sources>
+		</exe>
+		<exe id="usequery" template="std-example">
+			<sources>usequery.cpp</sources>
+		</exe>
+		<exe id="multiquery" template="std-example">
+			<sources>multiquery.cpp</sources>
+		</exe>
+		<exe id="custom1" template="std-example">
+			<sources>custom1.cpp</sources>
+		</exe>
+		<exe id="custom2" template="std-example">
+			<sources>custom2.cpp</sources>
+		</exe>
+		<exe id="custom3" template="std-example">
+			<sources>custom3.cpp</sources>
+		</exe>
+		<exe id="custom4" template="std-example">
+			<sources>custom4.cpp</sources>
+		</exe>
+		<exe id="custom5" template="std-example">
+			<sources>custom5.cpp</sources>
+		</exe>
+		<exe id="custom6" template="std-example">
+			<sources>custom6.cpp</sources>
+		</exe>
+		<exe id="dbinfo" template="std-example">
+			<sources>dbinfo.cpp</sources>
+		</exe>
+		<exe id="fieldinf1" template="std-example">
+			<sources>fieldinf1.cpp</sources>
+		</exe>
 
-	<!-- The "nonstandard" examples -->
-	<exe id="cgi_image" template="example">
-		<sources>cgi_image.cpp</sources>
-	</exe>
-	<exe id="load_file" template="example">
-		<sources>load_file.cpp</sources>
-	</exe>
-	<exe id="updel" template="example">
-		<sources>updel.cpp</sources>
-	</exe>
+		<!-- The "nonstandard" examples -->
+		<exe id="cgi_image" template="example">
+			<sources>cgi_image.cpp</sources>
+		</exe>
+		<exe id="load_file" template="example">
+			<sources>load_file.cpp</sources>
+		</exe>
+		<exe id="updel" template="example">
+			<sources>updel.cpp</sources>
+		</exe>
+	</if>
 </makefile>
