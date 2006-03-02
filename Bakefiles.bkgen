@@ -8,7 +8,6 @@
 
     <!-- List of output formats to generate: -->
     <add-formats>
-        autoconf,mingw,msvc6prj
+        autoconf,msvc6prj,mingw
     </add-formats>
-
 </bakefile-gen>
