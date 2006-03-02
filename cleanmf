@@ -1,0 +1,6 @@
+#!/bin/sh
+rm -f {.,examples,lib}/*.ds?
+rm -f {.,examples,lib}/Makefile
+rm -f {.,examples,lib}/Makefile.in
+rm -f {.,examples,lib}/makefile.gcc
+rm -f {.,examples,lib}/Makefile.simple
