@@ -1,17 +1,17 @@
 #!/bin/sh
 
 ARGS=1
-OPT_EXAMPLES=
+BF_OPTIONS=
 while [ $ARGS != 0 ]
 do
 	case "$1" in
-		pedantic)
-			export CXXFLAGS="-g -O2 -ansi -pedantic -Wall -W -Wold-style-cast -Wfloat-equal -Wwrite-strings -Woverloaded-virtual -Wno-long-long"
+		noexamples)
+			BF_OPTIONS="-DEXAMPLES=no $BF_OPTIONS"
 			shift
 			;;
 
-		noexamples)
-			OPT_EXAMPLES="-DEXAMPLES=no"
+		pedantic)
+			export CXXFLAGS="-g -O2 -ansi -pedantic -Wall -W -Wold-style-cast -Wfloat-equal -Wwrite-strings -Woverloaded-virtual -Wno-long-long"
 			shift
 			;;
 
@@ -24,7 +24,7 @@ done
 rm -f config.cache
 set -x
 
-./rebake $OPT_EXAMPLES &&
+./rebake $BF_OPTIONS &&
 	aclocal -I config -I /usr/local/share/aclocal &&
 	autoheader &&
 	autoconf &&
