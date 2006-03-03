@@ -21,7 +21,7 @@
 
 		<if cond="FORMAT=='autoconf'">
 			<warnings>max</warnings>
-			<ldlibs>../lib/libmysqlpp.so</ldlibs>
+			<ldlibs>../lib/libmysqlpp.$(SO_SUFFIX)</ldlibs>
 			<sys-lib>@MYSQL_C_LIB@</sys-lib>
 			<if cond="ZLIB=='yes'">
 				<sys-lib>z</sys-lib>

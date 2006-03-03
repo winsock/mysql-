@@ -29,6 +29,8 @@
 		<install-to>$(LIBDIR)</install-to>
 		
 		<if cond="FORMAT=='autoconf'">
+			<sys-lib>@MYSQL_C_LIB@</sys-lib>
+
 			<modify-target target="uninstall">
 				<command>
 					rm -f $(DESTDIR)$(libdir)/$(DLLPREFIX)mysqlpp.$(SO_SUFFIX)
