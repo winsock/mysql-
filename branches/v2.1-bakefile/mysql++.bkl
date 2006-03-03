@@ -112,5 +112,11 @@
 				ebuild /usr/portage/dev-db/mysql++/$(PKGNAME).ebuild digest
 			</command>
 		</action>
+
+		<action id="ctags">
+			<command>ctags `pwd`/{lib,examples}/*.{cpp,h}</command>
+			<command>( cd lib ; ln -sf ../tags . )</command>
+			<command>( cd examples ; ln -sf ../tags . )</command>
+		</action>
 	</if>
 </makefile>

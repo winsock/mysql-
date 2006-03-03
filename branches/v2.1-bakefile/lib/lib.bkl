@@ -47,4 +47,10 @@
 	<action id="custom.h">
 		<command>./custom.pl</command>
 	</action>
+
+	<if cond="FORMAT=='autoconf'">
+		<action id="ctags">
+			<command>( cd .. ; make ctags )</command>
+		</action>
+	</if>
 </makefile>
