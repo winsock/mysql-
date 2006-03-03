@@ -31,6 +31,7 @@
 
 		<if cond="FORMAT=='gnu'">
 			<include>/usr/include/mysql</include>
+			<include>/usr/include/mysql++</include>
 			<sys-lib>mysqlclient</sys-lib>
 		</if>
 
