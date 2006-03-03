@@ -52,9 +52,9 @@
 				cp Bakefiles.bkgen bootstrap ChangeLog cleanmf \
 					common.bkl config.guess config.h.in config.sub \
 					configure* COPYING CREDITS do-upload fetch-backup \
-					HACKERS INSTALL install.bat libmysqlclient.def \
-					LICENSE Makefile* mysql++.* osver README* rebake \
-					reconf Wishlist $(PKGNAME)
+					HACKERS INSTALL install.bat install-sh \
+					libmysqlclient.def LICENSE Makefile* mysql++.* \
+					osver README* rebake reconf Wishlist $(PKGNAME)
 			</command>
 			<command>cp config/*.m4 $(PKGNAME)/config</command>
 			<command>cp doc/README* doc/ssqls-pretty $(PKGNAME)/doc</command>
@@ -78,9 +78,27 @@
 
 		<action id="dist-build-examples">
 			<command>mkdir -p $(PKGNAME)/examples</command>
-			<command>cp examples/*.{bkl,cpp,h} $(PKGNAME)/examples</command>
-			<command>cp examples/Mak* $(PKGNAME)/examples</command>
-			<command>cp examples/*.ds? $(PKGNAME)/examples</command>
+			<command>
+				( cd examples &amp;&amp; \
+				  cp *.{bkl,cpp,ds?,h} Mak* README ../$(PKGNAME)/examples )
+			</command>
+		</action>
+
+		<action id="rpm-setup">
+			<command>cp $(PKGNAME).tar.gz /usr/src/redhat/SOURCES</command>
+			<depends>dist</depends>
+		</action>
+
+		<action id="rpm">
+			<command>cd /usr/src/redhat/SPECS</command>
+			<command>rpmbuild -bb mysql++.spec</command>
+			<depends>rpm-setup</depends>
+		</action>
+
+		<action id="srpm">
+			<command>cd /usr/src/redhat/SPECS</command>
+			<command>rpmbuild -bs mysql++.spec</command>
+			<depends>rpm-setup</depends>
 		</action>
 	</if>
 </makefile>
