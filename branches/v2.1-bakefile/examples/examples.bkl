@@ -8,8 +8,6 @@
 	<template id="example">
 		<include>../lib</include>
 
-		<sys-lib>mysqlpp</sys-lib>
-
 		<debug-info>$(DEBUGINFO)</debug-info>
 
 		<if cond="FORMAT in ['msvc6prj', 'mingw']">
@@ -17,12 +15,13 @@
 			<include>c:\mysql\include</include>
 			<lib-path>c:\mysql\lib\opt</lib-path>
 			<lib-path>..\lib\$(BUILD)</lib-path>
+			<sys-lib>mysqlpp</sys-lib>
 			<sys-lib>libmysql</sys-lib>
 		</if>
 
 		<if cond="FORMAT=='autoconf'">
 			<warnings>max</warnings>
-			<lib-path>../lib</lib-path>
+			<ldlibs>../lib/libmysqlpp.so</ldlibs>
 			<sys-lib>@MYSQL_C_LIB@</sys-lib>
 			<if cond="ZLIB=='yes'">
 				<sys-lib>z</sys-lib>
@@ -32,6 +31,7 @@
 		<if cond="FORMAT=='gnu'">
 			<include>/usr/include/mysql</include>
 			<include>/usr/include/mysql++</include>
+			<sys-lib>mysqlpp</sys-lib>
 			<sys-lib>mysqlclient</sys-lib>
 		</if>
 
