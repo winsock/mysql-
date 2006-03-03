@@ -26,28 +26,21 @@
 		</modify-target>
 
 		<action id="dist">
-			<depends>dist-noexamples</depends>
-			<depends>dist-examples</depends>
+			<depends>dist-build</depends>
+			<command>tar czf $(PKGNAME).tar.gz $(PKGNAME)</command>
 			<command>rm -rf $(PKGNAME)</command>
 		</action>
 
-		<action id="dist-examples">
-			<command>tar czf $(PKGNAME).tar.gz $(PKGNAME)</command>
-			<depends>dist-build-main</depends>
-			<depends>dist-build-examples</depends>
-		</action>
-
-		<action id="dist-noexamples">
-			<command>tar czf $(PKGNAME)-noex.tar.gz $(PKGNAME)</command>
-			<depends>dist-build-main</depends>
-		</action>
-
-		<action id="dist-build-main">
+		<action id="dist-build">
+			<!-- Set up package directory -->
 			<command>
 				for d in config doc/refman/html doc/userman/html lib ; do \
 					mkdir -p $(PKGNAME)/$(DBLDOLLAR)d ; \
 				done
 			</command>
+
+			<!-- Copy files into package directory -->
+			<!-- top directory -->
 			<command>
 				cp Bakefiles.bkgen bootstrap ChangeLog cleanmf \
 					common.bkl config.guess config.h.in config.sub \
@@ -56,7 +49,11 @@
 					libmysqlclient.def LICENSE Makefile* mysql++.* \
 					osver README* rebake reconf Wishlist $(PKGNAME)
 			</command>
+
+			<!-- config subdir -->
 			<command>cp config/*.m4 $(PKGNAME)/config</command>
+
+			<!-- doc subdir -->
 			<command>cp doc/README* doc/ssqls-pretty $(PKGNAME)/doc</command>
 			<command>
 				for f in LICENSE Makefile README userman.xml ; do \
@@ -71,12 +68,13 @@
 			<command>
 				cp doc/userman/html/userman.css $(PKGNAME)/doc/userman/html
 			</command>
+
+			<!-- lib subdir -->
 			<command>
 				cp lib/*.{bkl,cpp,ds?,h,in} lib/Mak* $(PKGNAME)/lib
 			</command>
-		</action>
 
-		<action id="dist-build-examples">
+			<!-- examples subdir -->
 			<command>mkdir -p $(PKGNAME)/examples</command>
 			<command>
 				( cd examples &amp;&amp; \
