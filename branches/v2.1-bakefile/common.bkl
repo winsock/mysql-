@@ -9,7 +9,7 @@
 	<if cond="MYSQLLIB=='mysqlclient_r'">
 		<set var="THREAD_TYPE">multi</set>
 	</if>
-	<if cond="TARGETING_WIN32=='1'">
+	<if cond="FORMAT in ['msvc6prj', 'mingw']">
 		<set var="THREAD_TYPE">multi</set>
 	</if>
 		
