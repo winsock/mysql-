@@ -120,4 +120,10 @@
 			<sources>updel.cpp</sources>
 		</exe>
 	</if>
+
+	<if cond="FORMAT=='autoconf'">
+		<action id="ctags">
+			<command>( cd .. ; make ctags )</command>
+		</action>
+	</if>
 </makefile>
