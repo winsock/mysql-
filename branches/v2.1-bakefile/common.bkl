@@ -9,6 +9,9 @@
 	<if cond="MYSQLLIB=='mysqlclient_r'">
 		<set var="THREAD_TYPE">multi</set>
 	</if>
+	<if cond="TARGETING_WIN32=='1'">
+		<set var="THREAD_TYPE">multi</set>
+	</if>
 		
     <option name="BUILD">
         <values>debug,release</values>
