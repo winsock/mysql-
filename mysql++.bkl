@@ -17,10 +17,13 @@
 		<set var="PKGNAME">mysql++-@PACKAGE_VERSION@</set>
 		<set var="DBLDOLLAR">$(DOLLAR)$(DOLLAR)</set>
 			
-		<action id="install-lib">
-			<command>cd lib &amp;&amp; $(DOLLAR)(MAKE) install</command>
-			<dependency-of>install</dependency-of>
-		</action>
+		<modify-target target="install">
+			<command>(cd lib &amp;&amp; $(DOLLAR)(MAKE) install)</command>
+		</modify-target>
+
+		<modify-target target="uninstall">
+			<command>(cd lib &amp;&amp; $(DOLLAR)(MAKE) uninstall)</command>
+		</modify-target>
 
 		<action id="dist">
 			<depends>dist-noexamples</depends>
