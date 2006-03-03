@@ -98,5 +98,16 @@
 			<command>rpmbuild -bs mysql++.spec</command>
 			<depends>rpm-setup</depends>
 		</action>
+
+		<action id="ebuild">
+			<depends>dist</depends>
+			<command>cp $(PKGNAME).tar.gz /usr/portage/distfiles</command>
+			<command>
+				cp mysql++.ebuild /usr/portage/dev-db/mysql++/$(PKGNAME).ebuild
+			</command>
+			<command>
+				ebuild /usr/portage/dev-db/mysql++/$(PKGNAME).ebuild digest
+			</command>
+		</action>
 	</if>
 </makefile>
