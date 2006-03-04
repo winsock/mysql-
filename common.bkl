@@ -3,13 +3,9 @@
 	<include file="presets/simple.bkl"/>
 
 	<set var="DBLDOLLAR">$(DOLLAR)$(DOLLAR)</set>
-	<set var="MYSQLLIB">@MYSQL_C_LIB@</set>
 	<set var="ZLIB">yes</set>
 
 	<set var="THREAD_TYPE">single</set>
-	<if cond="MYSQLLIB=='mysqlclient_r'">
-		<set var="THREAD_TYPE">multi</set>
-	</if>
 	<if cond="FORMAT in ['msvc6prj', 'mingw']">
 		<set var="THREAD_TYPE">multi</set>
 	</if>
