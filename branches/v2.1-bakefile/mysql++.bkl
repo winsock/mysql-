@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <makefile>
-	<include file="presets/simple.bkl"/>
+	<include file="common.bkl"/>
 
 	<subproject id="lib">
 		<dir>lib</dir>
@@ -15,7 +15,6 @@
 
 	<if cond="FORMAT=='autoconf'">
 		<set var="PKGNAME">mysql++-@PACKAGE_VERSION@</set>
-		<set var="DBLDOLLAR">$(DOLLAR)$(DOLLAR)</set>
 			
 		<modify-target target="install">
 			<command>(cd lib &amp;&amp; $(DOLLAR)(MAKE) install)</command>
