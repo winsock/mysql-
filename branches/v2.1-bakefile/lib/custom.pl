@@ -68,7 +68,7 @@ inline int sql_cmp(const std::string &a, const std::string &b) {
 ---
 
 my @types = ("char", "unsigned char", "tiny_int", "int", "unsigned int",
-	  "short int", "unsigned short int");
+	  "short int", "unsigned short int", "unsigned long", "long");
 foreach my $type (@types) {
     print OUT0 << "---";
 
