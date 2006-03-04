@@ -58,6 +58,12 @@ print OUT0 << "---";
 
 #include <string>
 
+#ifdef MYSQLPP_SSQLS_NO_STATICS
+#define MYSQLPP_SSQLS_EXPAND(a...)
+#else
+#define MYSQLPP_SSQLS_EXPAND(a...) a
+#endif
+
 namespace mysqlpp {
 
 enum sql_dummy_type {sql_dummy};
@@ -642,11 +648,11 @@ $defs
     NAME##_cus_equal_list<Manip> equal_list(mysqlpp::cchar *d, mysqlpp::cchar *c, Manip m, 
 					    mysqlpp::sql_cmp_type sc) const;
   }; 
-
+  MYSQLPP_SSQLS_EXPAND(
   const char *NAME::names[] = { 
 $names 
   }; 
-  const char *NAME::_table = #NAME ;  
+  const char *NAME::_table = #NAME ;)
 
   template <class Manip>
   NAME##_cus_value_list<Manip>::NAME##_cus_value_list
