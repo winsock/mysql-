@@ -99,8 +99,8 @@ v2.1 Plan
 
 	  - Add time_t conversion.
 
-	  - Arithmetic features.  (See "Algorithms for Programmers"
-	    by Binstock and Rex.)
+	  - Arithmetic features.  (See "Practical Algorithms for
+	    Programmers" by Binstock and Rex.)
 
 	  - It may be possible to get some nice syntactic sugar,
 	    such as a way to call SQL functions like NOW() when
@@ -163,6 +163,8 @@ v2.1 Plan
 	  mysqlpp::tiny_int_unsigned_null, and know they're getting
 	  the most appropriate C++ type to SQL's TINY UNSIGNED INT
 	  with the NULL attribute.  Use these types in the examples?
+
+	o Add Chris Frey's packarray class?
 
 
 Future Features
