@@ -176,6 +176,7 @@ foreach my $i (1..$max_data_members) {
   $compr = ""; $parm2 = ""; $define = "";
   $compr = "    int cmp; \\\n" unless $i == 1;
   $compp = "";
+  $set = "";
   foreach my $j (1..$i) {
       $compr .= "    if (cmp = mysqlpp::sql_cmp(x.C$j , y.C$j )) return cmp; \\\n"
                                                               unless $j == $i;
