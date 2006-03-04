@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <makefile>
+	<requires version="0.2.0"/>		<!-- for fileList() -->
+
 	<include file="../common.bkl"/>
 	<using module="datafiles"/>
 
@@ -35,7 +37,9 @@
 				<command>
 					rm -f $(DESTDIR)$(libdir)/$(DLLPREFIX)mysqlpp.$(SO_SUFFIX)
 				</command>
-				<command>rm -f $(HEADER_DIR)/*.h</command>
+				<command>
+					for f in *.h ; do rm -f $(HEADER_DIR)/$(DBLDOLLAR)f ; done
+				</command>
 				<command>rmdir $(HEADER_DIR)</command>
 			</modify-target>
 		</if>
