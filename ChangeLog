@@ -1,4 +1,4 @@
-2.1.0.alpha2, 2006.03.03 (not yet released)
+2.1.0.alpha3, 2006.03.04 (not yet released)
 
 	o Converted automake and makemake files to their equivalents in
 	  Bakefile format.
@@ -8,6 +8,22 @@
 	  mysql_next_result().
 
 	o Replaced final use of strcpy() with strncpy().
+
+	o custom.pl now runs without complaint in strict mode, with
+	  warnings turned on.  Thanks for this patch go to "Waba".
+
+	o Fixed a bug in custom.pl where incorrect code would be
+	  generated for some SSQLS set() methods.  Thanks for this
+	  patch go to "Waba".
+
+	o SSQLS structures now support long and unsigned long fields.
+	  Thanks for this patch go to "Waba".
+
+	o It's now possible to put SSQLS definitions in a header
+	  file used by multiple modules in a program without
+	  getting multiple static member definition errors.  See the
+	  documentation for details.  Thanks for this patch go to
+	  Viktor Stark.
 
 
 2.0.7, 2005.11.23 (r1147)
