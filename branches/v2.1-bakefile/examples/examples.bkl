@@ -20,9 +20,12 @@
 		</if>
 
 		<if cond="FORMAT=='autoconf'">
+			<cxxflags>@PTHREAD_CFLAGS@</cxxflags>
+			<ldflags>@PTHREAD_LIBS@</ldflags>
+			<sys-lib>@MYSQL_C_LIB@</sys-lib>
+
 			<warnings>max</warnings>
 			<ldlibs>../lib/libmysqlpp.$(SO_SUFFIX)</ldlibs>
-			<sys-lib>@MYSQL_C_LIB@</sys-lib>
 			<if cond="ZLIB=='yes'">
 				<sys-lib>z</sys-lib>
 			</if>
