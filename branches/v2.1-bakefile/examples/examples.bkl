@@ -117,6 +117,9 @@
 		<exe id="fieldinf1" template="std-example">
 			<sources>fieldinf1.cpp</sources>
 		</exe>
+		<exe id="xaction" template="std-example">
+			<sources>xaction.cpp</sources>
+		</exe>
 
 		<!-- The "nonstandard" examples -->
 		<exe id="cgi_image" template="example">
