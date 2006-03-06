@@ -11,7 +11,7 @@
 		<sources>coldata.cpp connection.cpp datetime.cpp field_names.cpp
 		fields.cpp field_types.cpp manip.cpp myset.cpp qparms.cpp
 		query.cpp result.cpp row.cpp sql_string.cpp string_util.cpp
-		type_info.cpp vallist.cpp</sources>
+		transaction.cpp type_info.cpp vallist.cpp</sources>
 
 		<depends>custom.h</depends>
 

@@ -29,19 +29,6 @@ v2.1 Plan
 	base class.
 
 
-	o Transaction support.	Create a "Transaction" class, an
-	  object of which you create on the stack, giving it a
-	  reference to the Connection object.  Transaction object's
-	  ctor calls a function on the Connection object to start
-	  a transaction set, and its dtor calls another function to
-	  commit the transaction.  Also provide a "commit()" member
-	  function, to commit before destruction.  This has a couple
-	  of uses.  First, it's useful for avoiding exceptions coming
-	  from ~Transaction(), if such a thing is possible.  Second,
-	  sometimes it's inconvenient to wait until the end of a block
-	  to commit the transaction, and adding artifical blocks is
-	  somewhat ugly.
-
 	o Add a configure script option to allow the new lock
 	  mechanism to use platform mutexes via the Boost.Threads
 	  library.
