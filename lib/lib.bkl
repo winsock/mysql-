@@ -13,6 +13,8 @@
 		query.cpp result.cpp row.cpp sql_string.cpp string_util.cpp
 		type_info.cpp vallist.cpp</sources>
 
+		<depends>custom.h</depends>
+
 		<debug-info>$(DEBUGINFO)</debug-info>
 		<include>..</include>
 
