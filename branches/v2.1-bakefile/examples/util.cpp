@@ -201,6 +201,18 @@ get_stock_table(mysqlpp::Query& query, mysqlpp::Result& res)
 }
 
 
+//// print_stock_table /////////////////////////////////////////////////
+// Simply retrieve and print the entire contents of the stock table.
+
+void
+print_stock_table(mysqlpp::Query& query)
+{
+	mysqlpp::Result res;
+	get_stock_table(query, res);
+	print_stock_rows(res);
+}
+
+
 //// connect_to_db /////////////////////////////////////////////////////
 // Establishes a connection to a MySQL database server, optionally
 // attaching to database kdb.  This is basically a command-line parser
