@@ -59,9 +59,9 @@ print OUT0 << "---";
 #include <string>
 
 #ifdef MYSQLPP_SSQLS_NO_STATICS
-#define MYSQLPP_SSQLS_EXPAND(a...)
+#define MYSQLPP_SSQLS_EXPAND(...)
 #else
-#define MYSQLPP_SSQLS_EXPAND(a...) a
+#define MYSQLPP_SSQLS_EXPAND(...) __VA_ARGS__
 #endif
 
 namespace mysqlpp {
