@@ -27,44 +27,12 @@
  USA
 ***********************************************************************/
 
+#include "stock.h"
 #include "util.h"
 
-#include <mysql++.h>
-#include <custom.h>
-
 #include <iostream>
-#include <iomanip>
-#include <string>
-#include <vector>
 
 using namespace std;
-
-sql_create_5(stock,
-	1,	// This number is used to make a SSQLS less-than-comparable.
-		// When comparing two SSQLS structures, the first N elements are
-		// compared.  In this instance, we are saying that we only want
-		// the first element ('item') to be used when comparing two
-		// stock structures.
-
-	5,	// Each SSQLS structure includes a number of constructors.  Some
-		// of these are fixed in nature, but one of these will have this
-		// number of arguments, one for each of the first N elements in
-		// the structure; it is an initialization ctor.  Since N is the
-		// same as the number of structure elements in this instance,
-		// that ctor will be able to fully initialize the structure. This
-		// behavior is not always wanted, however, so the macro allows
-		// you make the constructor take fewer parameters, leaving the
-		// remaining elements uninitialized.  An example of when this is
-		// necessary is when you have a structure containing only two
-		// integer elements: one of the other ctors defined for SSQLS
-		// structures takes two ints, so the compiler barfs if you pass
-		// 2 for this argument.  You would need to pass 0 here to get
-		// that SSQLS structure to compile.
-	string, item,
-	mysqlpp::longlong, num,
-	double, weight,
-	double, price,
-	mysqlpp::Date, sdate)
 
 int
 main(int argc, char *argv[])

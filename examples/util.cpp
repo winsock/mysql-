@@ -25,6 +25,12 @@
  USA
 ***********************************************************************/
 
+// This include isn't needed by util module.  It's just a test of the
+// new SSQLS feature allowing the structure to be defined in many
+// modules without having a multiply-defined static variable error.
+#define MYSQLPP_SSQLS_NO_STATICS
+#include "stock.h"		
+
 #include "util.h"
 
 #include <iostream>
