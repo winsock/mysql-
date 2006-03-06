@@ -23,7 +23,12 @@
 			<define>MYSQLPP_MAKING_DLL</define>
 			<include>c:\mysql\include</include>
 			<lib-path>c:\mysql\lib\opt</lib-path>
+		</if>
+		<if cond="FORMAT=='msvc6prj'">
 			<sys-lib>libmysql</sys-lib>
+		</if>
+		<if cond="FORMAT=='mingw'">
+			<sys-lib>mysqlclient</sys-lib>
 		</if>
 
 		<threading>$(THREAD_TYPE)</threading>

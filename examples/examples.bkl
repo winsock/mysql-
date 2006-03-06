@@ -14,9 +14,15 @@
 			<define>_UNICODE</define>
 			<include>c:\mysql\include</include>
 			<lib-path>c:\mysql\lib\opt</lib-path>
-			<lib-path>..\lib\$(BUILD)</lib-path>
 			<sys-lib>mysqlpp</sys-lib>
+		</if>
+		<if cond="FORMAT=='msvc6prj'">
+			<lib-path>..\lib\$(BUILD)</lib-path>
 			<sys-lib>libmysql</sys-lib>
+		</if>
+		<if cond="FORMAT=='mingw'">
+			<lib-path>..\lib</lib-path>
+			<sys-lib>mysqlclient</sys-lib>
 		</if>
 
 		<if cond="FORMAT=='autoconf'">
