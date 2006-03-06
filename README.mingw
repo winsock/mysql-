@@ -26,8 +26,8 @@ Building the Library and Example Programs
 	library.  Assuming you installed MySQL in c:\mysql and MySQL++
 	in c\mysql++, the commands to do this are:
 
-		mkdir c:\mysql\lib\gcc
-		cd c:\mysql\lib\gcc
+		mkdir c:\mysql\lib\opt
+		cd c:\mysql\lib\opt
 	    dlltool -k -d c:\mysql++\libmysqlclient.def -l libmysqlclient.a
 	
 	Now you can build the library with this command:
