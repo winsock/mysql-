@@ -39,7 +39,7 @@
 		
 		<if cond="FORMAT=='autoconf'">
 			<cxxflags>@PTHREAD_CFLAGS@</cxxflags>
-			<ldflags>@PTHREAD_LIBS@</ldflags>
+			<ldflags>@PTHREAD_LIBS@ @MYSQLPP_EXTRA_LIBS@</ldflags>
 			<sys-lib>@MYSQL_C_LIB@</sys-lib>
 
 			<modify-target target="uninstall">
