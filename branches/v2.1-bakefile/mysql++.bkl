@@ -112,10 +112,12 @@
 			</command>
 		</action>
 
-		<action id="ctags">
+		<action id="tags">
+			<is-phony/>
 			<command>ctags `pwd`/{lib,examples}/*.{cpp,h}</command>
 			<command>( cd lib ; ln -sf ../tags . )</command>
 			<command>( cd examples ; ln -sf ../tags . )</command>
 		</action>
+		<action id="ctags"><depends>tags</depends></action>
 	</if>
 </makefile>
