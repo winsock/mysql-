@@ -45,7 +45,7 @@
 					common.bkl config.guess config.h.in config.sub \
 					configure* COPYING CREDITS do-upload fetch-backup \
 					HACKERS INSTALL install.bat install-sh \
-					libmysqlclient.def LICENSE Makefile* mysql++.* \
+					libmysqlclient.def LICENSE Makefile.* mysql++.* \
 					osver README* rebake reconf Wishlist $(PKGNAME)
 			</command>
 
@@ -73,14 +73,15 @@
 
 			<!-- lib subdir -->
 			<command>
-				cp lib/*.{bkl,cpp,ds?,h,in} lib/Mak* $(PKGNAME)/lib
+				cp lib/*.{bkl,cpp,ds?,h,in} lib/Makefile.* $(PKGNAME)/lib
 			</command>
 
 			<!-- examples subdir -->
 			<command>mkdir -p $(PKGNAME)/examples</command>
 			<command>
 				( cd examples &amp;&amp; \
-				  cp *.{bkl,cpp,ds?,h} Mak* README ../$(PKGNAME)/examples )
+				  cp *.{bkl,cpp,ds?,h} Makefile.* README \
+				  ../$(PKGNAME)/examples )
 			</command>
 		</action>
 
