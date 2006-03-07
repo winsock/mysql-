@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <bakefile-gen>
     <input>
-        mysql++.bkl
+        ./mysql++.bkl
 		lib/lib.bkl
 		examples/examples.bkl
     </input>
@@ -11,13 +11,7 @@
         autoconf,msvc6prj,mingw
     </add-formats>
 
-    <add-flags files="mysql++.bkl" formats="mingw">
-        -oMakefile.mingw
-    </add-flags>
-    <add-flags files="examples/examples.bkl" formats="mingw">
-        -oexamples/Makefile.mingw
-    </add-flags>
-    <add-flags files="lib/lib.bkl" formats="mingw">
-        -olib/Makefile.mingw
+    <add-flags formats="mingw">
+        -o$(INPUT_FILE_DIR)/Makefile.mingw
     </add-flags>
 </bakefile-gen>
