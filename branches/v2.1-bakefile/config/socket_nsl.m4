@@ -50,7 +50,7 @@ AC_DEFUN([LIB_SOCKET_NSL],
 	AC_MSG_CHECKING([whether -lnsl is needed])
 	TRY_LNSL=no
 	AC_TRY_LINK(
-		[ #include <sys/netdb.h> ],
+		[ #include <netdb.h> ],
 		[ gethostbyname("gna.org"); ],
 		AC_MSG_RESULT(no), TRY_LNSL=yes)
 
