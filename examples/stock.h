@@ -6,17 +6,17 @@
 // The following is calling a very complex macro which will create
 // "struct stock", which has the member variables:
 //
-//   string item
+//   sql_char item;
 //   ...
-//   Date sdate
+//   sql_date sdate;
 //
 // plus methods to help populate the class from a MySQL row.  See the
-// user manual for further details.
+// SSQLS sections in the user manual for further details.
 sql_create_5(stock,
 	1, 5, // The meaning of these values is covered in the user manual
-	std::string, item,
-	mysqlpp::longlong, num,
-	double, weight,
-	double, price,
-	mysqlpp::Date, sdate)
+	mysqlpp::sql_char, item,
+	mysqlpp::sql_bigint, num,
+	mysqlpp::sql_double, weight,
+	mysqlpp::sql_double, price,
+	mysqlpp::sql_date, sdate)
 
