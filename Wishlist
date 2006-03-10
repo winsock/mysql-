@@ -100,17 +100,6 @@ v2.1 Plan
 	  that can be extended, instead of reinventing the wheel.
 	  Boost, perhaps?
 
-	o When you create a Connection object with its default ctor and
-	  don't .connect() it, several of its functions can fail to
-	  work correctly.  ping(), for one, because the MYSQL handle
-	  isn't initialized until the connection is established.
-	  Decide how to cope: a) init the handle in all ctors; b)
-	  throw ObjectNotInitialized when the library knows the
-	  call will fail; or c) just return a failure code and hope
-	  the user is checking it.  Could be a different answer for
-	  each function.  Keep in mind the consequences for database-
-	  independence here.
-
 	o Build a forward iterator mechanism for ResUse.  Make it
 	  general enough that you can use it with STL algorithms
 	  like find_if().  Then make an example to demonstrate this
@@ -162,6 +151,12 @@ Future Features
 	schedule, the best way to ensure it is to start coding and
 	provide a patch!
 
+
+	o Several MySQL++ functions wrap the MySQL C API too literally:
+	  they indicate success by returning 0 instead of true,
+	  as most other wrapper functions do.  Fixing this won't
+	  necessarily break the ABI, but it should wait for v3.x
+	  because it could silently break programs.
 
 	o Create adaptors for std::bitset, for storing binary data in a
 	  MySQL table.	Make two options available, one for storing
