@@ -3,7 +3,7 @@
 
 /***********************************************************************
  Copyright (c) 1998 by Kevin Atkinson, (c) 1999, 2000 and 2001 by
- MySQL AB, and (c) 2004, 2005 by Educational Technology Resources, Inc.
+ MySQL AB, and (c) 2004-2006 by Educational Technology Resources, Inc.
  Others may also hold copyrights on code in this file.  See the CREDITS
  file in the top directory of the distribution for details.
 
@@ -33,6 +33,7 @@
 #include "lockable.h"
 #include "noexceptions.h"
 #include "qparms.h"
+#include "querydef.h"
 #include "result.h"
 #include "row.h"
 #include "sql_string.h"
@@ -53,68 +54,6 @@
 #      include <slist>
 #  endif
 #endif
-
-
-/// \brief Used to define many similar functions in class Query.
-#define mysql_query_define0(RETURN, FUNC)\
-  RETURN FUNC (ss a)\
-    {return FUNC (parms() << a);}\
-  RETURN FUNC (ss a, ss b)\
-    {return FUNC (parms() << a << b);}\
-  RETURN FUNC (ss a, ss b, ss c)\
-    {return FUNC (parms() << a << b << c);}\
-  RETURN FUNC (ss a, ss b, ss c, ss d)\
-    {return FUNC (parms() << a << b << c << d);}\
-  RETURN FUNC (ss a, ss b, ss c, ss d, ss e)\
-    {return FUNC (parms() << a << b << c << d << e);} \
-  RETURN FUNC (ss a, ss b, ss c, ss d, ss e, ss f)\
-    {return FUNC (parms() << a << b << c << d << e << f);}\
-  RETURN FUNC (ss a, ss b, ss c, ss d, ss e, ss f, ss g)\
-    {return FUNC (parms() << a << b << c << d << e << f << g);}\
-  RETURN FUNC (ss a, ss b, ss c, ss d, ss e, ss f, ss g, ss h)\
-    {return FUNC (parms() << a << b << c << d << e << f << g << h);}\
-  RETURN FUNC (ss a, ss b, ss c, ss d, ss e, ss f, ss g, ss h, ss i)\
-    {return FUNC (parms() << a << b << c << d << e << f << g << h << i);}\
-  RETURN FUNC (ss a,ss b,ss c,ss d,ss e,ss f,ss g,ss h,ss i,ss j)\
-    {return FUNC (parms() <<a <<b <<c <<d <<e <<f <<g <<h <<i <<j);}\
-  RETURN FUNC (ss a,ss b,ss c,ss d,ss e,ss f,ss g,ss h,ss i,ss j,ss k)\
-    {return FUNC (parms() <<a <<b <<c <<d <<e <<f <<g <<h <<i <<j <<k);}\
-  RETURN FUNC (ss a,ss b,ss c,ss d,ss e,ss f,ss g,ss h,ss i,ss j,ss k,ss l)\
-    {return FUNC (parms() <<a <<b <<c <<d <<e <<f <<g <<h <<i <<j <<k <<l);}\
-
-/// \brief Used to define many similar member functions in class Query.
-#define mysql_query_define1(RETURN, FUNC) \
-  MYSQLPP_EXPORT RETURN FUNC (parms &p);\
-  mysql_query_define0(RETURN,FUNC) \
-
-/// \brief Used to define many similar member functions in class Query.
-#define mysql_query_define2(FUNC) \
-  template <class T1> void FUNC (T1 &con, const char* str); \
-  template <class T1> void FUNC (T1 &con, parms &p, query_reset r = RESET_QUERY);\
-  template <class T1> void FUNC (T1 &con, ss a)\
-	{FUNC (con, parms() << a);}\
-  template <class T1> void FUNC (T1 &con, ss a, ss b)\
-	{FUNC (con, parms() << a << b);}\
-  template <class T1> void FUNC (T1 &con, ss a, ss b, ss c)\
-	{FUNC (con, parms() << a << b << c);}\
-  template <class T1> void FUNC (T1 &con, ss a, ss b, ss c, ss d)\
-	{FUNC (con, parms() << a << b << c << d);}\
-  template <class T1> void FUNC (T1 &con, ss a, ss b, ss c, ss d, ss e)\
-	{FUNC (con, parms() << a << b << c << d << e);} \
-  template <class T1> void FUNC (T1 &con, ss a, ss b, ss c, ss d, ss e, ss f)\
-	{FUNC (con, parms() << a << b << c << d << e << f);}\
-  template <class T1> void FUNC (T1 &con,ss a,ss b,ss c,ss d,ss e,ss f,ss g)\
-	{FUNC (con, parms() << a << b << c << d << e << f << g);}\
-  template <class T1> void FUNC (T1 &con,ss a,ss b,ss c,ss d,ss e,ss f,ss g,ss h)\
-	{FUNC (con, parms() << a << b << c << d << e << f << g << h);}\
-  template <class T1> void FUNC (T1 &con, ss a, ss b, ss c, ss d, ss e, ss f, ss g, ss h, ss i)\
-	{FUNC (con, parms() << a << b << c << d << e << f << g << h << i);}\
-  template <class T1> void FUNC (T1 &con, ss a,ss b,ss c,ss d,ss e,ss f,ss g,ss h,ss i,ss j)\
-	{FUNC (con, parms() <<a <<b <<c <<d <<e <<f <<g <<h <<i <<j);}\
-  template <class T1> void FUNC (T1 &con, ss a,ss b,ss c,ss d,ss e,ss f,ss g,ss h,ss i,ss j,ss k)\
-	{FUNC (con, parms() <<a <<b <<c <<d <<e <<f <<g <<h <<i <<j <<k);}\
-  template <class T1> void FUNC (T1 &con, ss a,ss b,ss c,ss d,ss e,ss f,ss g,ss h,ss i,ss j,ss k,ss l)\
-	{FUNC (con, parms() <<a <<b <<c <<d <<e <<f <<g <<h <<i <<j <<k <<l);}\
 
 namespace mysqlpp {
 
@@ -176,8 +115,8 @@ class Query : public std::ostream,
 		public OptionalExceptions, public Lockable
 {
 public:
-	typedef const SQLString& ss;	///< to keep parameter lists short
-	typedef SQLQueryParms parms;	///< shortens def'ns of above macros
+	//typedef const SQLString& ss;	///< to keep parameter lists short
+	//typedef SQLQueryParms parms;	///< shortens def'ns of above macros
 
 	/// \brief Create a new query object attached to a connection.
 	///
