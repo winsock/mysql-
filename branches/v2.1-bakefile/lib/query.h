@@ -104,10 +104,10 @@ enum query_reset { DONT_RESET, RESET_QUERY };
 /// You call the parse() method to tell the Query object that the query
 /// string contains placeholders. Once that's done, you can call any of
 /// the many overloaded methods that take a number of SQLStrings (up to
-/// 12 at the moment) or any type that can be converted to SQLString,
-/// and those parameters will be inserted into the placeholders. When
-/// you call one of the parameterless functions the execute the query,
-/// the final query string is assembled and sent to the server.
+/// 25 by default) or any type that can be converted to SQLString, and
+/// those parameters will be inserted into the placeholders. When you
+/// call one of the parameterless functions the execute the query, the
+/// final query string is assembled and sent to the server.
 ///
 /// See the user manual for more details about these options.
 
@@ -115,9 +115,6 @@ class Query : public std::ostream,
 		public OptionalExceptions, public Lockable
 {
 public:
-	//typedef const SQLString& ss;	///< to keep parameter lists short
-	//typedef SQLQueryParms parms;	///< shortens def'ns of above macros
-
 	/// \brief Create a new query object attached to a connection.
 	///
 	/// This is the constructor used by mysqlpp::Connection::query().
