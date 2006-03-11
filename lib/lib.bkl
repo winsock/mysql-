@@ -65,6 +65,11 @@
 			<depends-on-file>custom.pl</depends-on-file>
 		</action>
 
+		<action id="querydef.h">
+			<command>./querydef.pl</command>
+			<depends-on-file>querydef.pl</depends-on-file>
+		</action>
+
 		<action id="tags">
 			<is-phony/>
 			<command>( cd .. ; make tags )</command>
