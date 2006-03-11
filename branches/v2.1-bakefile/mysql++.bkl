@@ -73,7 +73,7 @@
 
 			<!-- lib subdir -->
 			<command>
-				cp lib/*.{bkl,cpp,ds?,h,in} lib/Makefile.* $(PKGNAME)/lib
+				cp lib/*.{bkl,cpp,ds?,h,in,pl} lib/Makefile.* $(PKGNAME)/lib
 			</command>
 
 			<!-- examples subdir -->
