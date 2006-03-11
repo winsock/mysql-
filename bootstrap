@@ -29,5 +29,5 @@ set -x
 	autoheader &&
 	autoconf &&
 	./reconf $* &&
-	( cd lib ; make custom.h )
+	( cd lib ; make custom.h querydef.h )
 
