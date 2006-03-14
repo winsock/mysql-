@@ -46,7 +46,7 @@ public:
 	/// \param consistent Whether to use "consistent snapshots" during
 	/// the transaction. See the documentation for "START TRANSACTION"
 	/// in the MySQL manual for more on this.
-	Transaction(Connection& conn, bool consistent = false);
+	MYSQLPP_EXPORT Transaction(Connection& conn, bool consistent = false);
 
 	/// \brief Destructor
 	///
@@ -56,7 +56,7 @@ public:
 	/// being destroyed as the stack is unwound to handle an exception.
 	/// In that instance, you certainly want to roll back the
 	/// transaction.
-	~Transaction();
+	MYSQLPP_EXPORT ~Transaction();
 
 	/// \brief Commits the transaction
 	///
@@ -65,7 +65,7 @@ public:
 	/// no-op if the table isn't stored using a transaction-aware
 	/// storage engine.  See CREATE TABLE in the MySQL manual for
 	/// details.
-	void commit();
+	MYSQLPP_EXPORT void commit();
 
 	/// \brief Rolls back the transaction
 	///
@@ -73,7 +73,7 @@ public:
 	/// this object was created.  This only works on tables stored using
 	/// a transaction-aware storage engine.  See CREATE TABLE in the
 	/// MySQL manual for details.
-	void rollback();
+	MYSQLPP_EXPORT void rollback();
 
 private:
 	Connection& conn_;	///! Connection to send queries through
