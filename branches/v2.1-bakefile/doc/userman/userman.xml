@@ -665,8 +665,18 @@ q &lt;&lt; "SELECT * FROM stock WHERE item = " &lt;&lt; quote &lt;&lt; s; </prog
 			<programlisting><xi:include href="custom1.txt"
 				parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 			</programlisting>
+
+			<para>Here is the stock.h header used by that example, and many
+			others:</para>
 			
-			<para>As you can see, SSQLS is very powerful.</para>
+			<programlisting><xi:include href="stock.txt"
+				parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+			</programlisting>
+
+			<para>As you can see, SSQLS is very
+			powerful. It allows you to have a C++ structure
+			paralleling your SQL table structure and use
+			it easily with STL code.</para>
 		</sect3>
 
 		<sect3>
