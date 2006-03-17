@@ -1441,6 +1441,21 @@ stock foo("Hotdog", 52);</programlisting>
 		linkend="tutorial"/> for another way to accomplish
 		the same thing.)</para>
 
+		<para>This example illustrates an important point: you
+		could not use the 5-member <classname>stock</classname>
+		structure in this example. The reason is, when
+		you assign a <classname>Row</classname> object to
+		an SSQLS, the function that copies the row's data
+		into the structure expects to see as many fields
+		in the row as are in the SSQLS. Your program will
+		crash when the code tries to access fields beyond
+		those that exist in the <classname>Row</classname>
+		object. The converse is not true, however: if you
+		change the <computeroutput>SELECT</computeroutput>
+		statement above so that it retrieves more than one
+		column, the code will still work, because the extra
+		fields in each row will simply be ignored.</para>
+
 		<para>Realize that the second and third parameters
 		to <varname>sql_create_1</varname> can't be anything
 		other than 1 and 0, respectively. As discussed above,
