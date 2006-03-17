@@ -36,12 +36,6 @@ v2.1 Plan
 	o Document restrictions on order of destruction.  See this thread:
 	  http://lists.mysql.com/plusplus/5084
 
-	o Storing a subset row in an SSQLS defined to hold the entire
-	  row currently causes a segfault.  To see this, use the stock.h
-	  SSQLS definition in custom6.  This is arguably a bug; see if we
-	  can't make it just fill out the fields queried for, and leave
-	  the rest unchanged.
-
 	o Add a configure script option to allow the new lock
 	  mechanism to use platform mutexes via the Boost.Threads
 	  library.
