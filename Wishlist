@@ -114,9 +114,6 @@ v2.1 Plan
 	  to use the iterator.	Tricky bit: how do we make it not
 	  interfere with subclass Result's random-access iterator?
 
-	o Write an example to demonstrate compare.h features, or throw
-	  the header away.  It's not being used within the library.
-
 	o Have resetdb create a second table containing a BLOB column
 	  that load_file and cgi_image can use.  
 	  
