@@ -10,11 +10,11 @@ consider whether it could be reduced to an API feature that would be
 widely useful.  Patches or proposals of this sort are always welcome.
 
 
-v2.1 Plan
+v2.2 Plan
 ---------
 
 	This plan is not set in stone.	These are simply the features
-	we want to try and tackle for the v2.1 release.
+	we want to try and tackle for the v2.2 release.
 
 	Items in this plan may slip to a future release.  This
 	typically happens when the proper solution is unclear,
@@ -29,16 +29,11 @@ v2.1 Plan
 	base class.
 
 
-	o Viktor Stark reports that a BLOB of binary data containing 0's
-	  appears to be truncated when stored in an SSQLS with a std::string
-	  for the BLOB field.  Investigate, and fix if confirmed.
-
-	o Document restrictions on order of destruction.  See this thread:
-	  http://lists.mysql.com/plusplus/5084
-
-	o Add a configure script option to allow the new lock
-	  mechanism to use platform mutexes via the Boost.Threads
-	  library.
+	o Conditionally allow the Lockable mechanism to the
+	  Boost.Threads library.  If MYSQLPP_BOOST_THREADS is defined,
+	  #include the proper header and use Boost's mutexes.  Add a
+	  configure script option that defines this macro and adds
+	  any needed libraries to the <sys-lib> tags.
 
 	  Mechanism must reflect these MySQL C API restrictions:
 
@@ -76,17 +71,18 @@ v2.1 Plan
 	  a single std::string, which are the new terminus of the call
 	  chain.  Reimplement const char* versions in terms of these.
 
-	  Another way is to rename the template query versions (e.g. to
-	  execute_tq()) to avoid the overload conflict.  With that
-	  done, we can use C API functions like mysql_real_query(),
-	  which can take binary data.
+	  Another way is to add more overloads taking both a const
+	  char* and a length parameter. Make these new functions the
+	  terminus to each call chain.
 
-	  Yet another way is to add a length parameter to the call
-	  chain end functions.
+	  Yet another way is that we may be able to co-opt the first
+	  template query version of each of these functions, as it
+	  takes a single SQLString.
 
-	  And finally, we may be able to co-opt the first template
-	  query version of each of these functions, as it takes a
-	  single SQLString.
+	o Viktor Stark reports that a BLOB of binary data containing
+	  0's appears to be truncated when stored in an SSQLS with
+	  a std::string for the BLOB field.  Investigate, and fix
+	  if confirmed.
 
 	o Date and time classes are pretty minimalistic; they could
 	  be so much more powerful.  Some ideas:
