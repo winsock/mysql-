@@ -831,6 +831,34 @@ cout &lt;&lt; x &lt;&lt; endl;</programlisting>
 
 
 	<sect2>
+		<title>Creating Transaction Sets</title>
+
+		<para>MySQL++ v2.1 added the <ulink type="classref"
+		url="Transaction"/> class, which makes it easier to
+		use transactions in an exception-safe manner. Normally
+		you create the <classname>Transaction</classname>
+		object on the stack before you issue the queries in
+		your transaction set. Then, when all the queries
+		in the transaction set have been issued, you call
+		<function>Transaction::commit()</function>,
+		which commits the transaction set. If the
+		<classname>Transaction</classname> object goes out of
+		scope before you call <function>commit()</function>,
+		the transaction set is rolled back. This ensures
+		that if some code throws an exception after the
+		transaction is started but before it is committed,
+		the transaction isn't left unresolved.</para>
+
+		<para><filename>examples/xaction.cpp</filename> illustrates
+		this:</para>
+
+		<programlisting><xi:include href="xaction.txt"
+			parse="text" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+		</programlisting>
+	</sect2>
+
+
+	<sect2>
 		<title>Which Query Type to Use?</title>
 
 		<para>There are three major ways to execute a query in MySQL++:
