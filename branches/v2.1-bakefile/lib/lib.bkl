@@ -75,5 +75,10 @@
 			<command>( cd .. ; make tags )</command>
 		</action>
 		<action id="ctags"><depends>tags</depends></action>
+
+		<action id="refman">
+			<command>doxygen</command>
+			<command>cd ../doc/refman/latex &amp;&amp; make pdf &amp;&amp; mv refman.pdf ../../mysqlpp-refman.pdf</command>
+		</action>
 	</if>
 </makefile>
