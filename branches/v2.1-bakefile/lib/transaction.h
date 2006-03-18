@@ -37,6 +37,8 @@ namespace mysqlpp {
 
 class Connection;
 
+/// \brief Helper object for creating exception-safe SQL transactions.
+
 class Transaction
 {
 public:
