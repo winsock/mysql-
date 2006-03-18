@@ -747,6 +747,38 @@ q &lt;&lt; "SELECT * FROM stock WHERE item = " &lt;&lt; quote &lt;&lt; s; </prog
 
 
 	<sect2>
+		<title>C++ Equivalents of SQL Column Types</title>
+
+		<para>In MySQL++ version 2.1, the new
+		<filename>sql_types.h</filename> header declares
+		typedefs for all MySQL column types. These typedefs
+		all begin with <classname>sql_</classname> and end
+		with a lowercase version of the standard SQL type
+		name. For instance, the MySQL++ typedef corresponding
+		to <classname>TINYINT UNSIGNED</classname> is
+		<classname>mysqlpp::sql_tinyint_unsigned</classname>.
+		You do not have to use these typedefs; you could use
+		an <classname>unsigned char</classname> here if you
+		wanted to. For that matter, you could use a plain
+		<classname>int</classname> in most cases; MySQL++
+		is quite tolerant of this sort of thing. The typedefs
+		exist for style reasons, for those who want their C++
+		code to use the closest equivalent type for any given
+		SQL type.</para>
+
+		<para>Most of these typedefs use standard
+		C++ data types, but a few are aliases for a
+		MySQL++ specific type. For instance, the SQL type
+		<classname>DATETIME</classname> is mirrored in MySQL++
+		by <classname>mysqlpp::DateTime</classname>. For
+		consistency, <filename>sql_types.h</filename>
+		includes a typedef alias for
+		<classname>DateTime</classname> called
+		<classname>mysqlpp::sql_datetime</classname>.</para>
+	</sect2>
+
+
+	<sect2>
 		<title>Handling SQL Nulls</title>
 
 		<para>There is no equivalent of SQL's null in the standard
