@@ -147,43 +147,48 @@
 		<title>The Connection Object</title>
 
 		<para>A <ulink type="classref" url="Connection"/>
-		object manages the connection to the MySQL server. You
-		need at least one of these objects to do anything. A
-		Connection object can either create Query objects for
-		you, or you can execute queries directly through the
-		Connection object. The separate Query object is the
-		recommended way as it gives you far more power.</para>
+		object manages the connection to the MySQL
+		server. You need at least one of these objects to
+		do anything. Because the other MySQL++ objects your
+		program will use often depend (at least indirectly)
+		on the <classname>Connection</classname> instance,
+		the <classname>Connection</classname> object needs
+		to live at least as long as all other MySQL++ objects
+		in your program.</para>
 	</sect2>
 
 
 	<sect2>
 		<title>The Query Object</title>
 
-		<para>A <ulink type="classref" url="Query"/>
-		object is the recommended way of building
-		and executing queries. It is subclassed from
-		<computeroutput>std::stringstream</computeroutput>
+		<para>Most often, you create SQL queries using a
+		<ulink type="classref" url="Query"/> object created
+		by the <classname>Connection</classname> object.</para>
+
+		<para><classname>Query</classname> is subclassed
+		from <classname>std::stringstream</classname>
 		which means you can write to it like any other
 		C++ stream to form a query. The library includes
 		<ulink url="../../refman/html/manip_8h.html">stream
 		manipulators</ulink> that make it easy to generate
 		syntactically-correct SQL.</para>
 
-		<para>You can also set up <xref linkend="tquery"/> with
-		this class. Template queries work something like the
-		C <computeroutput>printf()</computeroutput> function:
+		<para>You can also set up <xref linkend="tquery"/>
+		with this class. Template queries work something
+		like C's <function>printf()</function> function:
 		you set up a fixed query string with tags inside that
 		indicate where to insert the variable parts. If you
 		have multiple queries that are structurally similar,
-		you simply set up one template query, and use that in
-		the various locations of your program.</para>
+		you simply set up one template query, and use that
+		in the various locations of your program.</para>
 
-		<para>A third method for building queries is to
-		use <xref linkend="ssqls"/> (SSQLS). This feature
-		presents your results as a C++ data structure, instead of
-		making you access the data through MySQL++ intermediary
-		classes. It also reduces the amount of embedded SQL code
-		your program needs.</para>
+		<para>A third method for building queries is
+		to use <classname>Query</classname> with <xref
+		linkend="ssqls"/> (SSQLS). This feature presents your
+		results as a C++ data structure, instead of making
+		you access the data through MySQL++ intermediary
+		classes. It also reduces the amount of embedded SQL
+		code your program needs.</para>
 	</sect2>
 
 
