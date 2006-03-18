@@ -1,4 +1,4 @@
-2.1.0.alpha4, 2006.03.10 (not yet released)
+2.1.0.beta1, 2006.03.17 (not yet released)
 
 	o Converted automake and makemake files to their equivalents in
 	  Bakefile format.
@@ -57,6 +57,13 @@
 	  Also, #including that file in the util module to test out
 	  the new SSQLS multiple static definition fix.
 
+	o Using all of the digits of precision guaranteed by the
+	  IEEE 754 spec when stringizing floating point numbers
+	  to build queries.  Previously, we would use the platform
+	  default, which can be as few as 6 digits.
+
+	o Removed lib/compare.h.  Not used within the library, never
+	  documented, and nobody seems to want to defend it.
 
 
 2.0.7, 2005.11.23 (r1147)
